@@ -12,6 +12,10 @@
   <link href="css/aos.css?ver=1.1.0" rel="stylesheet">
   <link href="css/bootstrap.min.css?ver=1.1.0" rel="stylesheet">
   <link href="css/main.css?ver=1.1.0" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+
   <noscript>
     <style type="text/css">
       [data-aos] {
@@ -234,6 +238,50 @@
           </div>
         </div>
       </div>
+
+      <div class="section" id="skill">
+        <div class="section paralax-mf bg-image" style="background-image: url(images/counters-bg.jpg)">
+          <div class="overlay-mf"></div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 col-sm-6">
+                <div class="counter-box" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                  <div class="counter-ico">
+                    <span class="ico-circle"><i class="ion-checkmark-round"></i></span>
+                  </div>
+                  <div class="counter-num">
+                    <p class="counter" data-count="17">17+</p>
+                    <span class="counter-text">PROJECT COMPLETED</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="counter-box pt-4 pt-md-0" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                  <div class="counter-ico">
+                    <span class="ico-circle"><i class="ion-ios-calendar-outline"></i></span>
+                  </div>
+                  <div class="counter-num">
+                    <p class="counter" data-count="1">1+</p>
+                    <span class="counter-text">YEARS OF EXPERIENCE</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="counter-box pt-4 pt-md-0" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                  <div class="counter-ico">
+                    <span class="ico-circle"><i class="ion-ribbon-a"></i></span>
+                  </div>
+                  <div class="counter-num">
+                    <p class="counter" data-count="2">2+</p>
+                    <span class="counter-text">AWARD WON</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="section" id="portfolio">
         <div class="container">
           <div class="row">
@@ -644,6 +692,37 @@
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
+  </script>
+
+  <script>
+    // Function to animate the counting effect
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter');
+      const speed = 200; // The lower the value, the faster the animation
+
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-count');
+          const count = +counter.innerText;
+          const inc = target / speed;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(updateCount, 1);
+          } else {
+            counter.innerText = target;
+          }
+        };
+
+        updateCount();
+      });
+    }
+
+    // Call the animateCounters function when the achievements section is in view
+    const achievementsSection = document.getElementById('achievements');
+    achievementsSection.addEventListener('inview', function (event) {
+      animateCounters();
+    });
   </script>
 </body>
 
